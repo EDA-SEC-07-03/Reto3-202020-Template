@@ -65,25 +65,22 @@ def agregar_fecha_map(date_entry,accidente):
     if(busca_severidad is None):
         entry=lista_severidad(accidente["Severity"])
         lt.addLast(entry["lista_accidentes_severidad"],accidente)
-        lt.addLast(date_entry["lista_acc_fecha"],accidente)
         mp.put(index_fecha,accidente["Severity"],entry)
     else:
         entry=me.getValue(busca_severidad)
         lt.addLast(entry["lista_accidentes_severidad"],accidente)
-        lt.addLast(date_entry["lista_acc_fecha"],accidente)
     return date_entry
 
 
 
 def indice_severidad(acc):
-    entry={"indices_severidad":None,"lista_acc_fecha":None}
-    entry["indices_severidad"]=mp.newMap(numelements=7,maptype="PROBING",comparefunction=comparaSeveridad)
-    entry["lista_acc_fecha"]=lt.newList("ARRAY_LIST")
+    entry={"indices_severidad":None}
+    entry["indices_severidad"]=mp.newMap(numelements=7,maptype="CHAINING",comparefunction=comparaSeveridad)
     return entry
 def lista_severidad(severidad):
     ofentry = {'severidad': None, 'lista_accidentes_severidad': None}
     ofentry['severidad'] = severidad
-    ofentry['lista_accidentes_severidad'] = lt.newList('ARRAY_LIST', comparaSeveridad)
+    ofentry['lista_accidentes_severidad'] = lt.newList('SINGLE_LINKED', comparaSeveridad)
     return ofentry
 
 def transformador_fecha(fecha):

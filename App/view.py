@@ -40,7 +40,7 @@ operación seleccionada.
 # ___________________________________________________
 
 
-accfile = "us_accidents_small - copia.csv"
+accfile = "us_accidents_dis_2016.csv"
 
 # ___________________________________________________
 #  Menu principal
