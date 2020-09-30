@@ -21,6 +21,10 @@
  """
 
 import config as cf
+from DISClib.ADT import orderedmap as om
+from DISClib.ADT import list as lt
+from DISClib.ADT import map as mp
+from DISClib.DataStructures import mapentry as me
 from App import model
 import datetime
 import csv
@@ -33,6 +37,7 @@ del modelo en una sola respuesta.  Esta responsabilidad
 recae sobre el controlador.
 """
 
+
 # ___________________________________________________
 #  Inicializacion del catalogo
 # ___________________________________________________
@@ -42,8 +47,7 @@ def init():
     """
     Llama la funcion de inicializacion del modelo.
     """
-
-    return None
+    return  model.arbol_inicial_ACC()
 
 
 # ___________________________________________________
@@ -55,9 +59,24 @@ def loadData(analyzer, accidentsfile):
     """
     Carga los datos de los archivos CSV en el modelo
     """
-    
+    acc_file = cf.data_dir + accidentsfile
+    input_file = csv.DictReader(open(acc_file, encoding="windows-1252"),
+                                delimiter=",")
+    for acc in input_file:
+        model.add_accident(analyzer, acc)
     return analyzer
+def carga_info(analyzer,accidentsfile):
+    x=loadData(analyzer,accidentsfile)
+    return x
 
 # ___________________________________________________
 #  Funciones para consultas
 # ___________________________________________________
+
+def consultar_acc_severidad(arbol,fecha):
+    xd=model.cantidad_acc_severidad(arbol,fecha)
+    return xd
+
+
+
+

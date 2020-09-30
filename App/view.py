@@ -23,6 +23,8 @@
 import sys
 import config
 from DISClib.ADT import list as lt
+from DISClib.ADT import map as mp
+from DISClib.DataStructures import mapentry as me
 from App import controller
 assert config
 
@@ -38,7 +40,7 @@ operación seleccionada.
 # ___________________________________________________
 
 
-crimefile = 'crime-utf8.csv'
+accfile = "us_accidents_small - copia.csv"
 
 # ___________________________________________________
 #  Menu principal
@@ -70,14 +72,22 @@ while True:
         cont = controller.init()
 
     elif int(inputs[0]) == 2:
-        print("\nCargando información de crimenes ....")
+        print("\nCargando información de accidentes ....")
+        datos_acc=controller.carga_info(cont,accfile)
 
     elif int(inputs[0]) == 3:
-        print("\nBuscando crimenes en un rango de fechas: ")
-
-
-    elif int(inputs[0]) == 4:
         print("\nRequerimiento No 1 del reto 3: ")
+        xd= input("Digite la Fecha que desea consultar en este formato (YYYY-MM-DD): \n")
+        asd=controller.consultar_acc_severidad(datos_acc,xd)
+        print("----------------------------------------")
+        for i in range(1,5):
+            if(mp.get(asd,str(i))!= None):
+                print("Accidentes severidad",str(i)+":",me.getValue(mp.get(asd,str(i))))
+            else:
+                print("Accidentes severidad",str(i)+":",0)
+
+        print("-----------------------------------------")
+        
 
     else:
         sys.exit(0)
