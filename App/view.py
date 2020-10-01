@@ -26,6 +26,7 @@ from DISClib.ADT import list as lt
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
 from App import controller
+from time import process_time
 assert config
 
 """
@@ -40,7 +41,7 @@ operación seleccionada.
 # ___________________________________________________
 
 
-accfile = "us_accidents_dis_2016.csv"
+accfile = "us_accidents_dis_2017.csv"
 
 # ___________________________________________________
 #  Menu principal
@@ -73,7 +74,10 @@ while True:
 
     elif int(inputs[0]) == 2:
         print("\nCargando información de accidentes ....")
+        time_1 = process_time()
         datos_acc=controller.carga_info(cont,accfile)
+        time_2 = process_time()
+        print(time_2-time_1, "segundos")
 
     elif int(inputs[0]) == 3:
         print("\nRequerimiento No 1 del reto 3: ")
@@ -87,7 +91,6 @@ while True:
                 print("Accidentes severidad",str(i)+":",0)
 
         print("-----------------------------------------")
-        
 
     else:
         sys.exit(0)
