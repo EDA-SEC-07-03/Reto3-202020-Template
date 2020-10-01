@@ -27,6 +27,7 @@ from DISClib.ADT import map as mp
 import datetime
 assert config
 
+#
 """
 En este archivo definimos los TADs que vamos a usar,
 es decir contiene los modelos con los datos en memoria
