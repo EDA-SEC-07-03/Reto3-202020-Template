@@ -40,8 +40,7 @@ es decir contiene los modelos con los datos en memoria
 def arbol_inicial_ACC():
     analizador={"a-fecha":om.newMap(omaptype="BST",comparefunction=comparaFechas)}
     return analizador
-
-
+    
 # Funciones para agregar informacion al catalogo
 def add_accident(arbol,accidente):
     cargar_fecha(arbol["a-fecha"],accidente)
