@@ -76,7 +76,12 @@ def carga_info(analyzer,accidentsfile):
 def consultar_acc_severidad(arbol,fecha):
     xd=model.cantidad_acc_severidad(arbol,fecha)
     return xd
-
+def consultar_altura(mapa):
+    altura=om.height(mapa)
+    return altura
+def consultar_numero_elementos(mapa):
+    num=model.numero_elementos(mapa)
+    return num
 
 
 

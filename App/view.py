@@ -74,7 +74,8 @@ while True:
     elif int(inputs[0]) == 2:
         print("\nCargando información de accidentes ....")
         datos_acc=controller.carga_info(cont,accfile)
-
+        print(controller.consultar_altura(datos_acc["a-fecha"]))
+        print(controller.consultar_numero_elementos(datos_acc))
     elif int(inputs[0]) == 3:
         print("\nRequerimiento No 1 del reto 3: ")
         xd= input("Digite la Fecha que desea consultar en este formato (YYYY-MM-DD): \n")
@@ -87,7 +88,7 @@ while True:
                 print("Accidentes severidad",str(i)+":",0)
 
         print("-----------------------------------------")
-        
+
 
     else:
         sys.exit(0)

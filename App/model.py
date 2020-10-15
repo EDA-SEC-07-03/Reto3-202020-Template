@@ -39,7 +39,7 @@ es decir contiene los modelos con los datos en memoria
 # API del TAD Catalogo de accidentes
 # -----------------------------------------------------
 def arbol_inicial_ACC():
-    analizador={"a-fecha":om.newMap(omaptype="BST",comparefunction=comparaFechas)}
+    analizador={"a-fecha":om.newMap(omaptype="RBT",comparefunction=comparaFechas)}
     return analizador
     
 # Funciones para agregar informacion al catalogo
@@ -103,6 +103,8 @@ def cantidad_acc_severidad(arbol,fecha):
             tamaño=lt.size(tamaño["lista_accidentes_severidad"])
             mp.put(mapretorno,str(i),tamaño)
     return mapretorno
+def numero_elementos(mapa):
+    return om.size(mapa['a-fecha'])
 
 # ==============================
 # Funciones de Comparacion
