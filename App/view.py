@@ -26,6 +26,7 @@ from DISClib.ADT import list as lt
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
 from App import controller
+from App import model
 from time import process_time
 assert config
 
@@ -77,6 +78,7 @@ while True:
         time_1 = process_time()
         datos_acc=controller.carga_info(cont,accfile)
         time_2 = process_time()
+        x = model.indexSize(datos_acc)
         print(time_2-time_1, "segundos")
 
     elif int(inputs[0]) == 3:

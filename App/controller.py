@@ -79,4 +79,3 @@ def consultar_acc_severidad(arbol,fecha):
 
 
 
-

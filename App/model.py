@@ -71,7 +71,10 @@ def agregar_fecha_map(date_entry,accidente):
         lt.addLast(entry["lista_accidentes_severidad"],accidente)
     return date_entry
 
-
+def indexSize(analyzer):
+    """Numero de autores leido
+    """
+    return om.size(analyzer['a-fecha'])
 
 def indice_severidad(acc):
     entry={"indices_severidad":None}
