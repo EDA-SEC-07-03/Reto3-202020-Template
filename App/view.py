@@ -42,7 +42,7 @@ operación seleccionada.
 # ___________________________________________________
 
 
-accfile = "us_accidents_dis_2017.csv"
+accfile = "us_accidents_dis_2016.csv"
 
 # ___________________________________________________
 #  Menu principal
