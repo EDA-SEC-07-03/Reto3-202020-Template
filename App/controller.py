@@ -84,4 +84,3 @@ def consultar_numero_elementos(mapa):
     return num
 
 
-
