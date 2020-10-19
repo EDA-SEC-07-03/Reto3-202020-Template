@@ -32,7 +32,8 @@ assert config
 En este archivo definimos los TADs que vamos a usar,
 es decir contiene los modelos con los datos en memoria
 
-
+##
+pa cargar
 """
 
 # -----------------------------------------------------
