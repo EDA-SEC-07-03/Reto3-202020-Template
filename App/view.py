@@ -95,7 +95,17 @@ while True:
                 print("Accidentes severidad",str(i)+":",0)
 
         print("-----------------------------------------")
-
+    elif int(inputs[0]) == 4:
+        print("\nRequerimiento No 2 del reto 3: ")
+        xd=input("Digite la Fecha que desea consultar en este formato (YYYY-MM-DD): \n")
+        asd=controller.consultar_accidentes_anteriores_fecha(datos_acc,xd)
+        print("--------------------------------------")
+        print("Total accidentes antes de ",xd)
+        print("Total:",asd[1])
+        print("--------------------------------------")
+        print("Fecha con más accidentes:",asd[0]["fecha_mas"])
+        print("Cantidad de accidentes:",asd[0]["cantidad"])
+        print("--------------------------------------")
 
     else:
         sys.exit(0)

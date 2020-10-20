@@ -52,7 +52,8 @@ def cargar_fecha(map,accidente):
     acc_date = datetime.datetime.strptime(fecha, '%Y-%m-%d %H:%M:%S')
     entry = om.get(map, acc_date.date())
     if entry is None:
-        datentry = indice_severidad(accidente)
+        datentry = indice_severidad()
+        agregar_fecha_map(datentry,accidente)
         om.put(map, acc_date.date(), datentry)
     else:
         datentry = me.getValue(entry)
@@ -69,6 +70,7 @@ def agregar_fecha_map(date_entry,accidente):
     else:
         entry=me.getValue(busca_severidad)
         lt.addLast(entry["lista_accidentes_severidad"],accidente)
+    lt.addLast(date_entry["accidentes_en_esta_fecha"],accidente)
     return date_entry
 
 def indexSize(analyzer):
@@ -76,9 +78,10 @@ def indexSize(analyzer):
     """
     return om.size(analyzer['a-fecha'])
 
-def indice_severidad(acc):
-    entry={"indices_severidad":None}
+def indice_severidad():
+    entry={"indices_severidad":None,"accidentes_en_esta_fecha":None}
     entry["indices_severidad"]=mp.newMap(numelements=7,maptype="CHAINING",comparefunction=comparaSeveridad)
+    entry["accidentes_en_esta_fecha"]=lt.newList("ARRAY_LIST")
     return entry
 def lista_severidad(severidad):
     ofentry = {'severidad': None, 'lista_accidentes_severidad': None}
@@ -109,6 +112,28 @@ def cantidad_acc_severidad(arbol,fecha):
 def numero_elementos(mapa):
     return om.size(mapa['a-fecha'])
 
+def accidentes_anteriores_fecha(analyzer,accidente_limite_superior):
+    limite_inferior=om.minKey(analyzer["a-fecha"])
+    limite_superior=transformador_fecha(accidente_limite_superior)
+    rango=om.values(analyzer["a-fecha"],limite_inferior,limite_superior)
+    total=0
+    llave_con_mas_accidentes={"fecha_mas":None,"cantidad":None}
+    for i in range(1,lt.size(rango)):
+        elemento=lt.getElement(rango,i)
+        total+=lt.size(elemento["accidentes_en_esta_fecha"])
+        fecha=lt.getElement(elemento["accidentes_en_esta_fecha"],1)["Start_Time"]
+        acc_date = datetime.datetime.strptime(fecha, '%Y-%m-%d %H:%M:%S')
+        acc_date = acc_date.date()
+        fecha=acc_date.strftime('%d de %m de %Y')
+        if(llave_con_mas_accidentes["cantidad"] == None ):
+            llave_con_mas_accidentes["fecha_mas"]=fecha
+            llave_con_mas_accidentes["cantidad"]=lt.size(elemento["accidentes_en_esta_fecha"])
+        elif(llave_con_mas_accidentes["cantidad"] != None):
+            if(lt.size(elemento["accidentes_en_esta_fecha"]) >= llave_con_mas_accidentes["cantidad"]):
+                llave_con_mas_accidentes["cantidad"]=lt.size(elemento["accidentes_en_esta_fecha"])
+                llave_con_mas_accidentes["fecha_mas"]=fecha
+    return (llave_con_mas_accidentes,total)
+
 # ==============================
 # Funciones de Comparacion
 # ==============================
@@ -131,3 +156,6 @@ def comparaSeveridad(severidad1,severidad2):
         return 1
     else:
         return -1
+
+"""
+        """
