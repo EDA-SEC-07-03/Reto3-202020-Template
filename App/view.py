@@ -57,6 +57,11 @@ def printMenu():
     print("2- Cargar información de accidentes")
     print("3- Requerimento 1")
     print("4- Requerimento 2")
+    print("5- Requerimento 3")
+    print("6- Requerimento 4")
+    print("7- Requerimento 5")
+    print("8- Requerimento 6")
+    print("9- Requerimento 7")
     print("0- Salir")
     print("*******************************************")
 
@@ -106,6 +111,27 @@ while True:
         print("Fecha con más accidentes:",asd[0]["fecha_mas"])
         print("Cantidad de accidentes:",asd[0]["cantidad"])
         print("--------------------------------------")
+    elif int(inputs[0]) == 5:
+        print("\nRequerimiento No 3 del reto 3: ")
+        xd1=input("Digite el límite inferior en el formato (YYYY-MM-DD): \n")
+        xd2=input("Digite el límite superior en el formato (YYYY-MM-DD): \n")
+        asd=controller.consultar_accidentes_rango_fechas(datos_acc,xd1,xd2)
+        print("-------------------------------------------------")
+        print("Total de accidentes en este rango:",asd["Total"])
+        print("-------------------------------------------------")
+        print("Tipo de accidente más recurrente")
+        for i in range(1,lt.size(asd["Tipo_dominante"])+1):
+            elemento=lt.getElement(asd["Tipo_dominante"],i)
+            if(elemento == "tipo1"):
+                print("Categoria 1")
+            elif(elemento == "tipo2"):
+                print("Categoria 2")
+            elif(elemento == "tipo3"):
+                print("Categoria 3")
+            elif(elemento == "tipo4"):
+                print("Categoria 4")
+        print("-------------------------------------------------")
+
 
     else:
         sys.exit(0)

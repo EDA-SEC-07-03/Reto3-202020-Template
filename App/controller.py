@@ -39,7 +39,7 @@ recae sobre el controlador.
 
 
 # ___________________________________________________
-#  Inicializacion del catalogo
+#  Inicializacion del catalogo3
 # ___________________________________________________
 
 
@@ -84,11 +84,17 @@ def consultar_numero_elementos(mapa):
     return num
 def consultar_accidentes_anteriores_fecha(mapa,limite_superior):
     return model.accidentes_anteriores_fecha(mapa,limite_superior)
-
-"""probador=model.arbol_inicial_ACC()
+def consultar_accidentes_rango_fechas(mapa,lim_inferior,lim_superior):
+    return model.accidentes_durante_rango(mapa,lim_inferior,lim_superior)
+"""
+probador=model.arbol_inicial_ACC()
 mapa_cargado_alternativo=loadData(probador,"us_accidents_dis_2016.csv")
+model.accidentes_durante_rango(mapa_cargado_alternativo,"2016-06-22","2016-12-30")
 xd=model.accidentes_anteriores_fecha(mapa_cargado_alternativo,"2016-06-22")
+
 mapa_cargado=loadData(probador,"us_accidents_dis_2016.csv")["a-fecha"]
 fecha=model.transformador_fecha("2016-06-22")
 valor_en_esta_fecha=me.getValue(om.get(mapa_cargado,fecha))
-lista_en_fecha=valor_en_esta_fecha["accidentes_en_esta_fecha"]"""
+lista_en_fecha=valor_en_esta_fecha["accidentes_en_esta_fecha"]
+"""
+

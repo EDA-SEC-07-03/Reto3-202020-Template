@@ -133,6 +133,33 @@ def accidentes_anteriores_fecha(analyzer,accidente_limite_superior):
                 llave_con_mas_accidentes["cantidad"]=lt.size(elemento["accidentes_en_esta_fecha"])
                 llave_con_mas_accidentes["fecha_mas"]=fecha
     return (llave_con_mas_accidentes,total)
+def accidentes_durante_rango(analyzer,fecha_lim_inferior,fecha_lim_superior):
+    mas_reportadas={"tipo1":0,"tipo2":0,"tipo3":0,"tipo4":0}
+    total=0
+    fecha_lim_inferior=transformador_fecha(fecha_lim_inferior)
+    fecha_lim_superior=transformador_fecha(fecha_lim_superior)
+    accidentes_rango=om.values(analyzer["a-fecha"],fecha_lim_inferior,fecha_lim_superior)
+    for i in range(1,lt.size(accidentes_rango)):
+        elemento=lt.getElement(accidentes_rango,i)
+        total+=lt.size(elemento["accidentes_en_esta_fecha"])
+        if(mp.get(elemento["indices_severidad"],"1") != None):
+            mas_reportadas["tipo1"]+=lt.size(me.getValue(mp.get(elemento["indices_severidad"],"1"))['lista_accidentes_severidad'])
+        if(mp.get(elemento["indices_severidad"],"2") != None):
+            mas_reportadas["tipo2"]+=lt.size(me.getValue(mp.get(elemento["indices_severidad"],"2"))['lista_accidentes_severidad'])
+        if(mp.get(elemento["indices_severidad"],"3") != None):
+            mas_reportadas["tipo3"]+=lt.size(me.getValue(mp.get(elemento["indices_severidad"],"3"))['lista_accidentes_severidad'])
+        if(mp.get(elemento["indices_severidad"],"4") != None):
+            mas_reportadas["tipo4"]+=lt.size(me.getValue(mp.get(elemento["indices_severidad"],"4"))['lista_accidentes_severidad'])
+    valores=mas_reportadas.values()
+    maximo=max(valores)
+    retorno={"Total":total,"Tipo_dominante":None}
+    tipos_dominantes=lt.newList("ARRAY_LIST")
+    for i in mas_reportadas:
+        if(mas_reportadas[i] == maximo):
+            lt.addLast(tipos_dominantes,i)
+    retorno["Tipo_dominante"]=tipos_dominantes
+    return retorno
+
 
 # ==============================
 # Funciones de Comparacion
