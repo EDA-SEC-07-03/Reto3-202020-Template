@@ -131,6 +131,47 @@ while True:
             elif(elemento == "tipo4"):
                 print("Categoria 4")
         print("-------------------------------------------------")
+    
+    elif int(inputs[0]) == 6:
+        print("\nRequerimiento No 4 del reto 3: ")
+        xd1=input("Digite el límite inferior en el formato (YYYY-MM-DD): \n")
+        xd2=input("Digite el límite superior en el formato (YYYY-MM-DD): \n")
+        Intervalo=controller.consultar_state(datos_acc,xd1,xd2)
+        print("-------------------------------------------------------------------------")
+        print("Fecha con más accidentes reportados en el intervalo:",Intervalo["Fecha"],"Con:",Intervalo["Cantidad"])
+        print("-------------------------------------------------------------------------")
+        print("Estado con más accidentes en el intervalo:",Intervalo["Estado"],"con",Intervalo["Cantidad estado"])
+        print("-------------------------------------------------------------------------")
+    
+    elif int(inputs[0]) == 7:
+        print("\nRequerimiento No 5 del reto 3: ")
+        xd1=input("Digite el límite inferior en el formato (HH:MM) (H= Hora, M= Minutos): \n")
+        xd2=input("Digite el límite superior en el formato (HH:MM) (H= Hora, M= Minutos): \n")
+        orden=controller.consultar_por_hora(datos_acc,xd1,xd2)
+        total=0
+        print("-------------------------------------------------------------------------")
+        print("Intervalo:",xd1,"A",xd2)
+        print("-------------------------------------------------------------------------")
+        for i in orden:
+            if(i != "porcen1" and i != "porcen2" and i != "porcen3" and i != "porcen4"):
+                print(i,":",orden[i],)
+                total+=orden[i]
+        print("-------------------------------------------------------------------------")
+        print("Total:",total)
+        print("-------------------------------------------------------------------------")
+        for i in orden:
+            if(i != "Tipo 1" or i != "Tipo 2" or i != "Tipo 3" or i != "Tipo 4"):
+                if(i == "porcen1"):
+                    print("Porcentaje 1:",orden[i])
+                elif(i == "porcen2"):
+                    print("Porcentaje 2:",orden[i])
+                elif(i == "porcen3"):
+                    print("Porcentaje 3:",orden[i])
+                elif(i == "porcen4"):
+                    print("Porcentaje 4:",orden[i])
+        print("-------------------------------------------------------------------------")
+    
+
 
 
     else:
