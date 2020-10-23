@@ -82,5 +82,13 @@ def consultar_altura(mapa):
 def consultar_numero_elementos(mapa):
     num=model.numero_elementos(mapa)
     return num
+def consultar_accidentes_anteriores_fecha(mapa,limite_superior, limite_inferior):
+    return model.accidentes_anteriores_fecha(mapa,limite_superior,limite_inferior, 1)
+def consultar_accidentes_rango_fechas(mapa,lim_inferior,lim_superior):
+    return model.accidentes_durante_rango(mapa,lim_inferior,lim_superior)
+def consultar_por_hora(mapa,hora_inicial,hora_final):
+    return model.rango_horas(mapa,hora_inicial,hora_final)
+def consultar_state(mapa,lim_inferior,lim_superior):
+    return model.conocer_estado(mapa, lim_inferior, lim_superior)
 
 

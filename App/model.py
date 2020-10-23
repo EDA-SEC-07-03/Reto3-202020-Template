@@ -127,30 +127,6 @@ def indice_severidad():
     entry["accidentes_en_esta_fecha"]=lt.newList("ARRAY_LIST")
     return entry
 
-def conocer_estado(analizador, fecha_inicio, fecha_final):
-    fecha_inicial=transformador_fecha(fecha_inicio)
-    fecha_fin=transformador_fecha(fecha_final)
-    x = om.values(analizador["a-fecha"], fecha_inicial, fecha_fin)
-    fecha_mas = accidentes_anteriores_fecha(analizador, fecha_final, fecha_inicio, 0)
-    respuesta = {"fecha mas accidentada" : fecha_mas[0], "Estado mas accidentado" : None}
-    estados = {}
-    numeros = {}
-    nombres = []
-    for i in range(1,lt.size(x)+1):
-        y=(lt.getElement(x,i))["accidentes_estado"]
-        llaves=mp.keySet(y)
-        for j in range(lt.size(llaves)+1):
-            nombre=lt.getElement(llaves,j)
-            if nombre is in nombres:
-                estados[nombre] += 1
-                numeros[estados[nombre]] = nombre
-            else:
-                nombres = lt.addFirst(nombres, nombre)
-                estados[nombre] = 0
-    maximo = max(estados.values())
-    state = numeros[maximo]
-    respuesta["Estado mas accidentado"] = state
-    return respuesta
 
 def indice_severidad2():
     entry={"indices_severidad":None,}
@@ -290,6 +266,31 @@ def accidentes_durante_rango(analyzer,fecha_lim_inferior,fecha_lim_superior):
             lt.addLast(tipos_dominantes,i)
     retorno["Tipo_dominante"]=tipos_dominantes
     return retorno
+def conocer_estado(analizador, fecha_inicio, fecha_final):
+    fecha_inicial=transformador_fecha(fecha_inicio)
+    fecha_fin=transformador_fecha(fecha_final)
+    x = om.values(analizador["a-fecha"], fecha_inicial, fecha_fin)
+    fecha_mas = accidentes_anteriores_fecha(analizador, fecha_final, fecha_inicio, 0)
+    respuesta = {"fecha mas accidentada" : fecha_mas[0], "Estado mas accidentado" : None}
+    estados = {}
+    numeros = {}
+    nombres = []
+    for i in range(1,lt.size(x)+1):
+        y=(lt.getElement(x,i))["accidentes_estado"]
+        llaves=mp.keySet(y)
+        for j in range(lt.size(llaves)+1):
+            nombre=lt.getElement(llaves,j)
+            if nombre in nombres:
+                estados[nombre] += 1
+                numeros[estados[nombre]] = nombre
+            else:
+                nombres = lt.addFirst(nombres, nombre)
+                estados[nombre] = 0
+    maximo = max(estados.values())
+    state = numeros[maximo]
+    respuesta["Estado mas accidentado"] = state
+    return respuesta
+
 def accidente_estado(mapa,fecha_inicial,fecha_final):
     fecha_inicial=transformador_fecha(fecha_inicial)
     fecha_final=transformador_fecha(fecha_final)
