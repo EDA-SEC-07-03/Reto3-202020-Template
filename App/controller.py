@@ -92,15 +92,3 @@ def consultar_state(mapa,lim_inferior,lim_superior):
     return model.accidente_estado(mapa,lim_inferior,lim_superior)
 
 
-"""
-probador=model.arbol_inicial_ACC()
-mapa_cargado_alternativo=loadData(probador,"us_accidents_dis_2016.csv")
-model.accidente_estado(mapa_cargado_alternativo,"2016-02-08","2017-01-26")
-model.accidentes_durante_rango(mapa_cargado_alternativo,"2016-06-22","2016-12-30")
-xd=model.accidentes_anteriores_fecha(mapa_cargado_alternativo,"2016-06-22")
-mapa_cargado=loadData(probador,"us_accidents_dis_2016.csv")["a-fecha"]
-fecha=model.transformador_fecha("2016-06-22")
-valor_en_esta_fecha=me.getValue(om.get(mapa_cargado,fecha))
-lista_en_fecha=valor_en_esta_fecha["accidentes_en_esta_fecha"]3
-"""
-

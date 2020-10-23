@@ -141,10 +141,14 @@ def transformador_fecha(fecha):
     fecha=datetime.datetime.strptime(fecha, '%Y-%m-%d')
     xd=fecha.date()
     return xd
+
 def transformador_hora(hora):
     hora=datetime.datetime.strptime(hora,"%H:%M")
     hora=hora.time()
     return hora
+
+
+
 def aproximafechas(fecha1):
     xd=fecha1.split(":")
     if(xd[0] == "23" and int(xd[1])> 45):
@@ -172,6 +176,7 @@ def rango_horas(mapa,hora_inicial,hora_final):
     tipos={"Tipo 1":0,"Tipo 2":0,"Tipo 3":0,"Tipo 4":0}
     hora_inicial=transformador_hora(aproximafechas(hora_inicial))
     hora_final=transformador_hora(aproximafechas(hora_final))
+
     a_iterar=om.values(mapa["a-horas"],hora_inicial,hora_final)
     for i in range(1,lt.size(a_iterar)+1):
         elementox=lt.getElement(a_iterar,i)
@@ -235,6 +240,7 @@ def accidentes_anteriores_fecha(analyzer,accidente_limite_superior):
                 llave_con_mas_accidentes["cantidad"]=lt.size(elemento["accidentes_en_esta_fecha"])
                 llave_con_mas_accidentes["fecha_mas"]=fecha
     return (llave_con_mas_accidentes,total)
+
 def accidentes_durante_rango(analyzer,fecha_lim_inferior,fecha_lim_superior):
     mas_reportadas={"tipo1":0,"tipo2":0,"tipo3":0,"tipo4":0}
     total=0
@@ -261,6 +267,7 @@ def accidentes_durante_rango(analyzer,fecha_lim_inferior,fecha_lim_superior):
             lt.addLast(tipos_dominantes,i)
     retorno["Tipo_dominante"]=tipos_dominantes
     return retorno
+
 def accidente_estado(mapa,fecha_inicial,fecha_final):
     fecha_inicial=transformador_fecha(fecha_inicial)
     fecha_final=transformador_fecha(fecha_final)
@@ -319,6 +326,7 @@ def compara_mapa_string(str1,str2):
         return 1
     else:
         return -1
+
 def comparaSeveridad(severidad1,severidad2):
     severidad2=me.getKey(severidad2)
     if (int(severidad1) == int(severidad2)):
