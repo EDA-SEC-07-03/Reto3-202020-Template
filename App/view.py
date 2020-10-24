@@ -42,7 +42,7 @@ operación seleccionada.
 # ___________________________________________________
 
 
-accfile ="Data/us_accidents_dis_2016.csv"
+accfile = "us_accidents_dis_2016.csv"
 
 # ___________________________________________________
 #  Menu principal
@@ -103,7 +103,7 @@ while True:
     elif int(inputs[0]) == 4:
         print("\nRequerimiento No 2 del reto 3: ")
         xd=input("Digite la Fecha que desea consultar en este formato (YYYY-MM-DD): \n")
-        asd=controller.consultar_accidentes_anteriores_fecha(datos_acc,xd, "np")
+        asd=controller.consultar_accidentes_anteriores_fecha(datos_acc,xd)
         print("--------------------------------------")
         print("Total accidentes antes de ",xd)
         print("Total:",asd[1])
@@ -138,9 +138,9 @@ while True:
         xd2=input("Digite el límite superior en el formato (YYYY-MM-DD): \n")
         Intervalo=controller.consultar_state(datos_acc,xd1,xd2)
         print("-------------------------------------------------------------------------")
-        print("Fecha con más accidentes reportados en el intervalo fue:",Intervalo["Fecha mas accidentada"])
+        print("Fecha con más accidentes reportados en el intervalo:",Intervalo["Fecha"],"Con:",Intervalo["Cantidad"])
         print("-------------------------------------------------------------------------")
-        print("Estado con más accidentes en el intervalo:",Intervalo["Estado mas accidentado"])
+        print("Estado con más accidentes en el intervalo:",Intervalo["Estado"],"con",Intervalo["Cantidad estado"])
         print("-------------------------------------------------------------------------")
     
     elif int(inputs[0]) == 7:
