@@ -90,5 +90,3 @@ def consultar_por_hora(mapa,hora_inicial,hora_final):
     return model.rango_horas(mapa,hora_inicial,hora_final)
 def consultar_state(mapa,lim_inferior,lim_superior):
     return model.accidente_estado(mapa,lim_inferior,lim_superior)
-
-
