@@ -8,7 +8,7 @@ import math
 def distance(origin, destination,radio ):
     lat1, lon1 = origin
     lat2, lon2 = destination
-    radius = radius # km
+    radius = radio # km
 
     dlat = math.radians(lat2-lat1)
     dlon = math.radians(lon2-lon1)

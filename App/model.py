@@ -24,6 +24,7 @@ from DISClib.ADT import list as lt
 from DISClib.ADT import orderedmap as om
 from DISClib.DataStructures import mapentry as me
 from DISClib.ADT import map as mp
+import Bono
 import datetime
 assert config
 
@@ -216,6 +217,19 @@ def cantidad_acc_severidad(arbol,fecha):
     return mapretorno
 def numero_elementos(mapa):
     return om.size(mapa['a-fecha'])
+def bono(mapa,punto_referencia1,punto_referencia2,radio):
+    fecha1=om.minKey(mapa["a-fecha"])
+    fecha2=om.maxKey(mapa["a-fecha"])
+    a_iterar=om.values(mapa["a-fecha"],fecha1,fecha2)
+    a_comparar=Bono.distance(punto_referencia1,punto_referencia2,radio)
+    xd=lt.newList("ARRAY_LIST")
+    for i in range(1,lt.size(a_iterar)+1):
+        accidentes=lt.getElement(a_iterar,i)["accidentes_en_esta_fecha"]
+        for e in range(1,lt.size(accidentes)+1):
+            elemento=lt.getElement(accidentes,e)
+            if(Bono.distance(punto_referencia1,elemento["Start_Lat"]+elemento["Start_Lng"],radio) == a_comparar):
+                lt.addLast(elemento["Start_Time"])
+
 
 def accidentes_anteriores_fecha(analyzer,accidente_limite_superior):
     limite_inferior=om.minKey(analyzer["a-fecha"])
@@ -279,6 +293,7 @@ def accidente_estado(mapa,fecha_inicial,fecha_final):
         for e in range(1,lt.size(llaves)+1):
             asd=lt.getElement(llaves,e)
             states[asd]=0
+
     for i in range(1,lt.size(a_iterar)+1):
         itera=(lt.getElement(a_iterar,i))["accidentes_estado"]
         for e in states:
