@@ -291,37 +291,7 @@ def conocer_estado(analizador, fecha_inicio, fecha_final):
     respuesta["Estado mas accidentado"] = state
     return respuesta
 
-def accidente_estado(mapa,fecha_inicial,fecha_final):
-    fecha_inicial=transformador_fecha(fecha_inicial)
-    fecha_final=transformador_fecha(fecha_final)
-    states={}
-    fecha_mas={"Fecha":None,"Cantidad":0}
-    total=0
-    a_iterar=om.values(mapa["a-fecha"],fecha_inicial,fecha_final)
-    for i in range(1,lt.size(a_iterar)+1):
-        itera=(lt.getElement(a_iterar,i))["accidentes_estado"]
-        llaves=mp.keySet(itera)
-        for e in range(1,lt.size(llaves)+1):
-            asd=lt.getElement(llaves,e)
-            states[asd]=0
-    for i in range(1,lt.size(a_iterar)+1):
-        itera=(lt.getElement(a_iterar,i))["accidentes_estado"]
-        for e in states:
-            if(mp.get(itera,e) != None):
-                al=lt.size(me.getValue(mp.get(itera,e)))
-                states[e]+=al
-                total+=lt.size(me.getValue(mp.get(itera,e)))
-        itera2=(lt.getElement(a_iterar,i))["accidentes_en_esta_fecha"]
-        if(lt.size(itera2) > fecha_mas["Cantidad"] ):
-            fecha=lt.getElement(itera2,1)
-            fecha_mas["Fecha"]=fecha["Start_Time"]
-            fecha_mas["Cantidad"]=lt.size(itera2)
-    maximo1=max(states.values())
-    for i in states:
-        if(states[i] == maximo1):
-            fecha_mas["Estado"]=i
-            fecha_mas["Cantidad estado"]=maximo1
-    return fecha_mas
+
 
 
 
