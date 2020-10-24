@@ -103,7 +103,7 @@ while True:
     elif int(inputs[0]) == 4:
         print("\nRequerimiento No 2 del reto 3: ")
         xd=input("Digite la Fecha que desea consultar en este formato (YYYY-MM-DD): \n")
-        asd=controller.consultar_accidentes_anteriores_fecha(datos_acc,xd)
+        asd=controller.consultar_accidentes_anteriores_fecha(datos_acc,xd,3)
         print("--------------------------------------")
         print("Total accidentes antes de ",xd)
         print("Total:",asd[1])
@@ -136,11 +136,11 @@ while True:
         print("\nRequerimiento No 4 del reto 3: ")
         xd1=input("Digite el límite inferior en el formato (YYYY-MM-DD): \n")
         xd2=input("Digite el límite superior en el formato (YYYY-MM-DD): \n")
-        Intervalo=controller.consultar_state(datos_acc,xd1,xd2)
+        Intervalo=controller.consultar_state(datos_acc, xd1,xd2)
         print("-------------------------------------------------------------------------")
-        print("Fecha con más accidentes reportados en el intervalo:",Intervalo["Fecha"],"Con:",Intervalo["Cantidad"])
+        print("Fecha con más accidentes reportados en el intervalo:",Intervalo["fecha mas accidentada"])
         print("-------------------------------------------------------------------------")
-        print("Estado con más accidentes en el intervalo:",Intervalo["Estado"],"con",Intervalo["Cantidad estado"])
+        print("Estado con más accidentes en el intervalo:",Intervalo["Estado mas accidentado"])
         print("-------------------------------------------------------------------------")
     
     elif int(inputs[0]) == 7:

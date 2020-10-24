@@ -284,7 +284,7 @@ def conocer_estado(analizador, fecha_inicio, fecha_final):
                 estados[nombre] += 1
                 numeros[estados[nombre]] = nombre
             else:
-                nombres = lt.addFirst(nombres, nombre)
+                nombres.append(nombre)
                 estados[nombre] = 0
     maximo = max(estados.values())
     state = numeros[maximo]
