@@ -42,7 +42,7 @@ operación seleccionada.
 # ___________________________________________________
 
 
-accfile ="C:/Users/John/Documents/3 JUAN\Estructuras de datos y algoritmos/Reto 3/Reto3-202020-Template/Data/us_accidents_dis_2016.csv"
+accfile ="Data/us_accidents_dis_2016.csv"
 
 # ___________________________________________________
 #  Menu principal
